@@ -51,6 +51,8 @@ int main()
         {
             png_byte* ptr = &(row[x*4]);
             printf("Pixel at position [ %d - %d ] has RGBA values: %d - %d - %d - %d\n", x, y, ptr[0], ptr[1], ptr[2], ptr[3]);
+            ptr[0] = 0;
+            ptr[1] = ptr[2];
         }
     }
 }
