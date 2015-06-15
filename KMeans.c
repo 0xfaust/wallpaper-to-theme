@@ -1,39 +1,25 @@
 #include <stdio.h>
-#include <stdio.h>                                                                                                                                              
 #include <stdlib.h>
 #include <math.h>
 
-struct Point{
-        int x, y;
-};
-double distance(struct Point a, struct Point b)
+#define CLUSTERS 3
+
+double distance(int dim, double *p1, double *p2)
 {
-        double distance;
-        distance = sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
-        return distance;
+        int i;
+        double d = 0; //lol breasts
+        for (i = 0; i < dim; i++){
+            d += ((p1[i] - p2[i]) * (p1[i] - p2[i]));
+        }
+        return d;
 }
-
-int main()
+void all_distances(int dim, int n, int k, double *data, double *centroid, double *out)
 {
+        int i, j;
+        for (i = 0; i < n; i++){
+                for (j = 0; j < k; j++){
+                        out[i*k + j] = distance(dim, &data[i * dim], &centroid[j * dim]);
+                }
+        }
 
-    int data[3][3];
-    data[0][0] = 6; data[0][1] = 5; data[0][2] = 4;
-    data[1][0] = 4; data[1][1] = 6; data[1][2] = 7;
-    data[2][0] = 5; data[2][1] = 9; data[2][2] = 3;
-
-    int center[2] = {1, 10};
-
-    struct Point a, b;
-    int i, j;
-
-    for (i=0; i<10; i++){
-            for (j=0; j<10; j++){
-                a.x = data[i][j];
-                a.y = data[i][j];
-                b.x = center[0];
-                b.y = center[1];
-                printf("Distance: %f\n", distance(a, b));
-            }
-    }
-    return 0;
 }
