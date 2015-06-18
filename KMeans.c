@@ -34,7 +34,6 @@ int main()
             
     int i, j; 
     int k = 0;
-    int sum = 0;
     int cnt = 0;
     
     float distance[48];
@@ -43,6 +42,7 @@ int main()
     rgb colours[16];
     rgb clusters[3];
     rgb new[16];
+    rgb sum;
     
     for (i=0; i<16; i++){
         
@@ -55,7 +55,13 @@ int main()
         clusters[i].blue = abs(floor(centroids[i]/1000)*1000-centroids[i]);
 
     }
+    printf("Original Cluster Centre's RGB Values\n");
+    for(i=0; i<3; i++){
+    printf("Cluster %d- R:%d G:%d B:%d\n", i+1, clusters[i].red, clusters[i].green, clusters[i].blue);
+    }
+    printf("\n\nNew Cluster Centre's RGB Values\n");
 
+    
     for (j=0; j<3; j++){
         for (i=0; i<16; i++){
 
@@ -74,8 +80,9 @@ int main()
      //   printf("%d\n",closest[i]);
     }
     
+    for (k=0; k<3; k++){
     for (i=0; i<16; i++){
-            if(closest[i] == centroids[0]){
+            if(closest[i] == centroids[k]){
                 new[i].red = floor(pixels[i]/1000000);
                 new[i].green = abs(floor(pixels[i]/1000000)*1000-floor(pixels[i]/1000));
                 new[i].blue = abs(floor(pixels[i]/1000)*1000-pixels[i]);
@@ -93,13 +100,23 @@ int main()
     for (i=0; i<16; i++){
             if(new[i].red != 0){
                     cnt = cnt+1;
-                    sum = sum + new[i].red;
+
+                    sum.red = 0;
+                    sum.green = 0;
+                    sum.blue = 0;
+
+                    sum.red = sum.red + new[i].red;
+                    sum.green = sum.green + new[i].green;
+                    sum.blue = sum.blue + new[i].blue;
             }
     }
- //   printf("\n%d %d\n", cnt, sum);
-    clusters[0].red = sum/cnt;
- //   printf("%d\n", clusters[0].red);
- 
+    clusters[k].red = floor(sum.red/cnt);
+    clusters[k].green = floor(sum.green/cnt);
+    clusters[k].blue = floor(sum.blue/cnt);
+
+    printf("Cluster %d- R:%d G:%d B:%d\n", k+1, clusters[k].red, clusters[k].green, clusters[k].blue);
+                        
+    }
 
     return 0;
 }
