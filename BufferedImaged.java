@@ -22,6 +22,5 @@ public class BufferedImaged {
 		System.out.println("Red: "+c.getRed());
 		System.out.println("Green: "+c.getGreen());
 		System.out.println("Blue: "+c.getBlue());
-		System.out.println("testing git pushing");
 	}
 }
