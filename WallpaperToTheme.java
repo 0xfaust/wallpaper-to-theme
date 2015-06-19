@@ -1,4 +1,4 @@
-public class converter {
+public class WallpaperToTheme {
 	public static void main(String[] args){
 		System.out.println("hello world");
 	}
