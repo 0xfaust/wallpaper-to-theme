@@ -56,12 +56,6 @@ int main()
                 clusters[i].blue = abs(floor(centroids[i]/1000)*1000-centroids[i]);
 
             }
-            printf("Original Cluster Centre's RGB Values\n");
-            for(i=0; i<3; i++){
-            printf("Cluster %d- R:%d G:%d B:%d\n", i+1, clusters[i].red, clusters[i].green, clusters[i].blue);
-            }
-            printf("\n\nNew Cluster Centre's RGB Values\n");
-
             
             for (j=0; j<3; j++){
                 for (i=0; i<16; i++){
@@ -119,9 +113,6 @@ int main()
                         centroids[i]*10;
                 }
             }
-
-            printf("Cluster %d- R:%d G:%d B:%d\n", k+1, clusters[k].red, clusters[k].green, clusters[k].blue);
-
             }
             iterations = iterations+1;
     }
