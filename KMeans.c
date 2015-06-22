@@ -76,20 +76,20 @@ int main()
             }
             
             for (k=0; k<3; k++){
-            for (i=0; i<16; i++){
-                    if(closest[i] == centroids[k]){
-                        new[i].red = floor(pixels[i]/1000000);
-                        new[i].green = abs(floor(pixels[i]/1000000)*1000-floor(pixels[i]/1000));
-                        new[i].blue = abs(floor(pixels[i]/1000)*1000-pixels[i]);
-                    }        
-                    else
-                    {
-                        new[i].red = 0;
-                        new[i].green = 0;
-                        new[i].blue = 0;
+                    for (i=0; i<16; i++){
+                            if(closest[i] == centroids[k]){
+                                new[i].red = floor(pixels[i]/1000000);
+                                new[i].green = abs(floor(pixels[i]/1000000)*1000-floor(pixels[i]/1000));
+                                new[i].blue = abs(floor(pixels[i]/1000)*1000-pixels[i]);
+                            }        
+                            else
+                            {
+                                new[i].red = 0;
+                                new[i].green = 0;
+                                new[i].blue = 0;
+                            }
+        
                     }
-
-            }
             for (i=0; i<16; i++){
                     if(new[i].red != 0){
                             cnt = cnt+1;
