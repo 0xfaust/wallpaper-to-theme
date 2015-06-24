@@ -4,9 +4,9 @@
 
 typedef struct RGB
 {
-        int red;
-        int green;
-        int blue;
+        float red;
+        float green;
+        float blue;
 } rgb;
 
 int main()
@@ -58,6 +58,8 @@ int main()
                         clusters[i].blue = abs(floor(centroids[i]/1000)*1000-centroids[i]);
                         
                 }
+                
+                k = 0;
                 
                 for (j=0; j<3; j++){
                         
