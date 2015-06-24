@@ -29,7 +29,6 @@ class BufferedImaged {
 			
 		    RGB[] colours = new RGB[pixels];
 		    Kmeans km = new Kmeans(colours, pixels);
-		    km.
 
 		    for (i=0; i<pixels; i++){
 				Color c = new Color(dataBuffInt[i]);
