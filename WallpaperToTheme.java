@@ -10,9 +10,9 @@ class WallpaperToTheme {
     
 		BufferedImaged bi = new BufferedImaged();
 		bi.do_job();
-
 	}
 }
+
 class BufferedImaged {
 		
 		public void do_job(){
@@ -25,7 +25,7 @@ class BufferedImaged {
 			int w = image.getWidth();
 			int h = image.getHeight();
 			int i = 0;
-		    int pixels = w*h; //total num of pixels in image
+		    	int pixels = w*h; //total num of pixels in image
 			int[] dataBuffInt = image.getRGB(0,0,w,h,null,0,w);
 			
 		    RGB[] colours = new RGB[pixels]; //array for RGB of each pixel
@@ -37,7 +37,6 @@ class BufferedImaged {
 		    
 		    Kmeans km = new Kmeans(colours, pixels); //creating instance of kmeans
 		    km.calcingDistances();
-
         }
 }
 
@@ -56,7 +55,6 @@ class RGB { //class to store RGB values
     public int getG() { return green; }
     public int getB() { return blue; }
 }
-
 
 class Kmeans {//class to gather dominant colours
 	
@@ -103,7 +101,4 @@ class Kmeans {//class to gather dominant colours
 		}
 		return returnVal;
 	}
-	
-
 }
-
