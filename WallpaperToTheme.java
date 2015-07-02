@@ -95,8 +95,12 @@ class Kmeans {//class to gather dominant colours
             }
         }
         for (int k=0; k<3; k++){
+            centroids[k].setRed(total_centroids[k].getR()/sum[k]);
+            centroids[k].setGreen(total_centroids[k].getG()/sum[k]);
+            centroids[k].setBlue(total_centroids[k].getB()/sum[k]);
             System.out.println("Sum of Centroid "+k+" = "+sum[k]);
             System.out.println("Total value of Centroid "+k+" = "+total_centroids[k].getR()+" "+total_centroids[k].getG()+" "+total_centroids[k].getB());
+            System.out.println("New Centroid "+k+" "+centroids[k].getR()+" "+centroids[k].getG()+" "+centroids[k].getB());
         }
 	}
 	
