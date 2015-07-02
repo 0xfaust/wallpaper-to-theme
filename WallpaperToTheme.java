@@ -20,7 +20,7 @@ class BufferedImaged {
 			try{
 				image = ImageIO.read(new File("test.jpg"));
 			} catch (IOException e) {
-				p("error with reading file");
+				System.out.println("error with reading file");
 			}
 			int w = image.getWidth();
 			int h = image.getHeight();
@@ -54,6 +54,11 @@ class RGB { //class to store RGB values
     public int getR() { return red; }
     public int getG() { return green; }
     public int getB() { return blue; }
+
+    public void setRed(int r) { red = r; }
+    public void setGreen(int g) { green = g; }
+    public void setBlue(int b) { blue = b; }
+
 }
 
 class Kmeans {//class to gather dominant colours
@@ -71,14 +76,28 @@ class Kmeans {//class to gather dominant colours
 
 	public void calcingDistances(){
 		RGB centroids[] = {new RGB(255,0,0),new RGB(0,255,0),new RGB(0,0,255)};//x2,y2,z2
-		for (int i=0; i<pixels; i++){
+		RGB total_centroids[] = {new RGB(0,0,0),new RGB(0,0,0),new RGB(0,0,0)};
+        int sum[] = new int[3];
+        for (int i=0; i<pixels; i++){
 			RGB rgb = colours[i];
 			closest[i] = calcDist(rgb,centroids);
 		}
 		for (int i=0; i<pixels; i++){ //just printing rgb values of image
 	    	RGB rgb = colours[i];
 	        System.out.println(i + "\t" + rgb.getR() + "\t" + rgb.getG() + "\t" + rgb.getB() + "\t" + closest[i]);
-	    }
+	        for (int j=0; j<3; j++){
+                if (closest[i] == j){
+                    total_centroids[j].setRed(total_centroids[j].getR()+rgb.getR());
+                    total_centroids[j].setGreen(total_centroids[j].getG()+rgb.getG());
+                    total_centroids[j].setBlue(total_centroids[j].getB()+rgb.getB());
+                    sum[j] = sum[j]+1;
+                }
+            }
+        }
+        for (int k=0; k<3; k++){
+            System.out.println("Sum of Centroid "+k+" = "+sum[k]);
+            System.out.println("Total value of Centroid "+k+" = "+total_centroids[k].getR()+" "+total_centroids[k].getG()+" "+total_centroids[k].getB());
+        }
 	}
 	
 	public static int calcDist(RGB rgb,RGB centroids[]){
