@@ -76,7 +76,9 @@ class Kmeans {//class to gather dominant colours
 
 	public void calcingDistances(){
 		RGB centroids[] = {new RGB(255,0,0),new RGB(0,255,0),new RGB(0,0,255)};//x2,y2,z2
-		RGB total_centroids[] = {new RGB(0,0,0),new RGB(0,0,0),new RGB(0,0,0)};
+        int iterations = 0;
+		while (iterations != 100){
+        RGB total_centroids[] = {new RGB(0,0,0),new RGB(0,0,0),new RGB(0,0,0)};
         int sum[] = new int[3];
         for (int i=0; i<pixels; i++){
 			RGB rgb = colours[i];
@@ -84,7 +86,7 @@ class Kmeans {//class to gather dominant colours
 		}
 		for (int i=0; i<pixels; i++){ //just printing rgb values of image
 	    	RGB rgb = colours[i];
-	        System.out.println(i + "\t" + rgb.getR() + "\t" + rgb.getG() + "\t" + rgb.getB() + "\t" + closest[i]);
+	        //System.out.println(i + "\t" + rgb.getR() + "\t" + rgb.getG() + "\t" + rgb.getB() + "\t" + closest[i]);
 	        for (int j=0; j<3; j++){
                 if (closest[i] == j){
                     total_centroids[j].setRed(total_centroids[j].getR()+rgb.getR());
@@ -98,11 +100,13 @@ class Kmeans {//class to gather dominant colours
             centroids[k].setRed(total_centroids[k].getR()/sum[k]);
             centroids[k].setGreen(total_centroids[k].getG()/sum[k]);
             centroids[k].setBlue(total_centroids[k].getB()/sum[k]);
-            System.out.println("Sum of Centroid "+k+" = "+sum[k]);
-            System.out.println("Total value of Centroid "+k+" = "+total_centroids[k].getR()+" "+total_centroids[k].getG()+" "+total_centroids[k].getB());
+            //System.out.println("Sum of Centroid "+k+" = "+sum[k]);
+            //System.out.println("Total value of Centroid "+k+" = "+total_centroids[k].getR()+" "+total_centroids[k].getG()+" "+total_centroids[k].getB());
             System.out.println("New Centroid "+k+" "+centroids[k].getR()+" "+centroids[k].getG()+" "+centroids[k].getB());
         }
+        iterations = iterations+1;
 	}
+    }
 	
 	public static int calcDist(RGB rgb,RGB centroids[]){
 		double distance = 100000;//max distance from a centroid to an RGB val of a pixel
